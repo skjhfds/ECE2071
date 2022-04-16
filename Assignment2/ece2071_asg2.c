@@ -4,6 +4,33 @@
 /* Function prototypes */
 void print(int mSize, char maze[mSize][mSize+1]);
 void findST(int mSize, char maze[mSize][mSize+1], int ST[2][2]);
+// Solution in stack
+// visited in queue
+
+typedef struct queueNode {
+    int coords[2];
+    qNode *next;
+}qNode;
+typedef struct stackNode {
+    int coords[2];
+    sNode *next
+}sNode;
+
+void enqueue(qNode **end, int coords[2]){
+    qNode *newNode = (qNode*)malloc(sizeof(qNode));
+    *newNode->coords = coords;
+    newNode->next = *end;
+    *end = newNode;
+    return;
+}
+void dequeue(qNode **end,int *coords){
+    qNode *temp = *end;
+    while (end != NULL) *end = temp->next;
+    coords = temp->coords;
+    free(temp);
+    return;
+}
+
 
 int main(int argc, char *argv[])
 {
@@ -20,7 +47,6 @@ int main(int argc, char *argv[])
     /* Find Start & Target */
     int ST[2][2]={0};
     findST(mSize, maze, ST);
-
     //print(mSize, maze);
     //printf("S={%d,%d}\nT={%d,%d}\n",ST[0][0],ST[0][1],ST[1][0],ST[1][1]);
     return 0;
@@ -52,4 +78,4 @@ void findST(int mSize, char maze[mSize][mSize+1], int ST[2][2]){
         }
     }
 }
-void wave()
+void wave(char i){}
